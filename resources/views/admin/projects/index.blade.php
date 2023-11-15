@@ -26,8 +26,13 @@
                     <td scope="id">{{$project->id}}</td>
                     <td scope="title">{{$project->title}}</td>
                     <td scope="description">{{$project->description}}</td>
+                    
                     <td scope="thumb">
-                        <img width="100px" src="{{$project->thumb}}" alt="">
+                        @if(str_contains($project->thumb, 'http'))
+                            <img width="100px" src="{{$project->thumb}}" alt="">
+                        @else
+                            <img width="100px" src="{{asset('storage/' . $project->thumb)}}" alt="">
+                        @endif
                     </td>
                     
                     <td scope="github">{{$project->github}}</td>
