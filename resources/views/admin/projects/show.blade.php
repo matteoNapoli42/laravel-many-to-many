@@ -10,7 +10,12 @@
         <h3>{{$project->title}}</h3>
         <p>Descrizione : {{$project->description}}</p>
         <span>GitHub :  <a href=""> {{$project->github}}</a></span>
-        <span>Tecnologie :{{$project->technologies}}</span>
+        <span>Tipologia di progetto : {{$project->type->name}}</span>
+        <span>Tecnologie :
+            @foreach($project->technologies as $tech)
+            {{$tech->name}}
+            @endforeach
+        </span>
     </div>
    
 </div>

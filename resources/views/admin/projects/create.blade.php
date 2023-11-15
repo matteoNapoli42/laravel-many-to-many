@@ -30,11 +30,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="type" class="form-label"><h3>TECHNOLOGIES</h3></label>
-            <input type="text" class="form-control" name="technologies" id="technologies" aria-describedby="helpId" placeholder="Inserisci le tecnologie utilizzate" value="{{old('technologies')}}">
-        </div>
-
-        <div class="mb-3">
             <select class="form-select" aria-label="Default select example" name="type_id">
                 <option selected>Select a project type</option>
                 @foreach($all_types as $type)
@@ -43,6 +38,17 @@
                 
               </select>
         </div>
+
+        <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach($all_tech as $tech)
+                <input type="checkbox" class="btn-check" id="{{$tech->name}}" autocomplete="off" name="tech[]" value="{{$tech->id}}">
+                <label class="btn btn-outline-primary" for="{{$tech->name}}">{{$tech->name}}</label>
+                @endforeach
+              </div>
+        </div>
+
+
         <button type="submit" class="btn btn-success my-5">SAVE <a href="{{route('projects.index')}}"></a></button>
 
         @include('admin.partials.errors')

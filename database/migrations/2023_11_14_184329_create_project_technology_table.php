@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('project_technology', function (Blueprint $table) {
-            //$table->id();
+            $table->id();
 
-            $table->primary(['project_id', 'technology_id']);
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
 
             $table->unsignedBigInteger('technology_id');
-            $table->foreign('technology_id')->references('id')->on('technologies');
+            $table->foreign('technology_id')->references('id')->on('technologies')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

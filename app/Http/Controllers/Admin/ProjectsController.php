@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -21,6 +22,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::with('type')->get();
+        //dd($projects);
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -30,8 +32,9 @@ class ProjectsController extends Controller
      */
     public function create()
     {
+        $all_tech = Technology::all();
         $all_types = Type::all();
-        return view('admin.projects.create', compact('all_types'));
+        return view('admin.projects.create', compact('all_types', 'all_tech'));
     }
 
     /**
@@ -45,6 +48,7 @@ class ProjectsController extends Controller
             $validated['thumb'] = $file_path;
         }
         $newProject = Project::create($validated);
+        $newProject->technologies()->sync($request->tech);
         return to_route('projects.index')->with('message', 'Project created successfully');
     }
 
@@ -87,6 +91,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->sync([]);
         $project->delete();
         return to_route('projects.index')->with('message', 'Welldone! Comic Deleted Successfully');
     }

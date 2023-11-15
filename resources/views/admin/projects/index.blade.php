@@ -11,31 +11,45 @@
         <table class=" table table-light mb-1"> 
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">TITLE</th>
-                    <th scope="col">DESCRIPTION</th>
-                    <th scope="col">THUMB</th>
-                    <th scope="col">GITHUB</th>
+                    <th scope="id">ID</th>
+                    <th scope="title">TITLE</th>
+                    <th scope="description">DESCRIPTION</th>
+                    <th scope="thumb">THUMB</th>
+                    <th scope="github">GITHUB</th>
                     <th scope="col">TECHNOLOGIES</th>
-                    <th scope="col">TYPES</th>
+                    <th scope="types">TYPES</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($projects as $project)
                 <tr>
-                    <td scope="col">{{$project->id}}</td>
-                    <td scope="col">{{$project->title}}</td>
-                    <td scope="col">
+                    <td scope="id">{{$project->id}}</td>
+                    <td scope="title">{{$project->title}}</td>
+                    <td scope="description">{{$project->description}}</td>
+                    <td scope="thumb">
                         <img width="100px" src="{{$project->thumb}}" alt="">
                     </td>
-                    <td scope="col">{{$project->description}}</td>
-                    <td scope="col">{{$project->github}}</td>
-                    <td scope="col">{{$project->technologies}}</td>
-                    @if(is_null($project->type))
-                    <td scope="col">N/D</td>
+                    
+                    <td scope="github">{{$project->github}}</td>
+                    
+                    @if($project->technologies->isEmpty())
+                    <td scope="technologies">N/D</td>
                     @else
-                    <td scope="col">{{$project->type['name']}}</td>
+                    <td scope="technologies">
+                        @foreach($project->technologies as $tech)
+                            <span>{{$tech->name}}</span>
+                        @endforeach
+                    </td>
                     @endif
+                    
+                    @if(is_null($project->type))
+                    <td scope="types">N/D</td>
+                    @else
+                    <td scope="types">{{$project->type['name']}}</td>
+                    @endif
+                    
+                    
+                   
                     <td>
                         <button class=" btn btn-secondary">
                             <a class=" text-white" href="{{route('projects.show', $project->id)}}">VIEW</a>
