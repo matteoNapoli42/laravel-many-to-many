@@ -30,6 +30,11 @@
         </div>
 
         <div class="mb-3">
+            <label for="project_link" class="form-label"><h3>PROJECT LINK</h3></label>
+            <input type="text" class="form-control" name="project_link" id="project_link" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{old('github')}}">
+        </div>
+
+        <div class="mb-3">
             <label for="type" class="form-label"><h3>TYPE</h3></label>
             <input type="text" class="form-control" name="type" id="type" aria-describedby="helpId" placeholder="Inserisci il tipo di progetto" value="{{old('type')}}">
         </div>
@@ -46,7 +51,7 @@
         <div class="mb-3">
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach($all_tech as $tech)
-                <input type="checkbox" class="btn-check" id="{{$tech->name}}" autocomplete="off" name="technologies[]">
+                <input type="checkbox" class="btn-check" id="{{$tech->name}}" autocomplete="off" name="tech[]" value="{{$tech->id}}">
                 <label class="btn btn-outline-primary" for="{{$tech->name}}">{{$tech->name}}</label>
                 @endforeach
               </div>

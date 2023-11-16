@@ -16,7 +16,7 @@
                     <th scope="description">DESCRIPTION</th>
                     <th scope="thumb">THUMB</th>
                     <th scope="github">GITHUB</th>
-                    <th scope="col">TECHNOLOGIES</th>
+                    <th scope="technologies">TECHNOLOGIES</th>
                     <th scope="types">TYPES</th>
                 </tr>
             </thead>
@@ -36,6 +36,7 @@
                     </td>
                     
                     <td scope="github">{{$project->github}}</td>
+                    <td scope="project_link">{{$project->project_link}}</td>
                     
                     @if($project->technologies->isEmpty())
                     <td scope="technologies">N/D</td>

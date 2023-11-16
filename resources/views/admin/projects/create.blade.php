@@ -25,8 +25,13 @@
         </div>
         
         <div class="mb-3">
-            <label for="series" class="form-label"><h3>GITHUB</h3></label>
+            <label for="github" class="form-label"><h3>GITHUB</h3></label>
             <input type="text" class="form-control" name="github" id="github" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{old('github')}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="project_link" class="form-label"><h3>PROJECT LINK</h3></label>
+            <input type="text" class="form-control" name="project_link" id="project_link" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{old('project_link')}}">
         </div>
 
         <div class="mb-3">

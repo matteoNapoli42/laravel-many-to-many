@@ -40,6 +40,7 @@ class StoreProjectRequest extends FormRequest
             'thumb' => 'nullable|image',
             'github' => 'nullable',
             'type_id' => 'nullable',
+            'project_link' => 'required',
         ];
     }
 }

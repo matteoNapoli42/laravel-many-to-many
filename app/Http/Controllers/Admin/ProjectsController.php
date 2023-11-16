@@ -65,8 +65,9 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
+        $all_tech = Technology::all();
         $all_types = Type::all();
-        return view('admin.projects.edit', compact('project', 'all_types'));
+        return view('admin.projects.edit', compact('project', 'all_types', 'all_tech'));
     }
 
     /**
@@ -75,14 +76,15 @@ class ProjectsController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->all();
-        if ($request->has['thumb']) {
-            $newThumb = $request->thumb;
-            $path = Storage::put('thumbs', $newThumb);
+        if ($request->has('thumb')) {
             if (!is_Null($project->thumb) && Storage::fileExists(($project->thumb))) {
                 Storage::delete($project->thumb);
             }
+            $newThumb = $request->thumb;
+            $path = Storage::put('thumbs', $newThumb);
         }
         $project->update($data);
+        $project->technologies()->sync($request->tech);
         return to_route('projects.index', $project)->with('message', 'Project updated!');
     }
 
