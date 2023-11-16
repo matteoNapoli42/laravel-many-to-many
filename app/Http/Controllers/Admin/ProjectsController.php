@@ -75,15 +75,20 @@ class ProjectsController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $data = $request->all();
+        $validated = $request->validated();
+        if ($request->has('thumb')) {
+            $file_path = Storage::put('thumbs', $request->thumb);
+            $validated['thumb'] = $file_path;
+        }
+
         if ($request->has('thumb')) {
             if (!is_Null($project->thumb) && Storage::fileExists(($project->thumb))) {
                 Storage::delete($project->thumb);
             }
-            $newThumb = $request->thumb;
-            $path = Storage::put('thumbs', $newThumb);
+            $file_path = Storage::put('thumbs', $request->thumb);
+            $validated['thumb'] = $file_path;
         }
-        $project->update($data);
+        $project->update($validated);
         $project->technologies()->sync($request->tech);
         return to_route('projects.index', $project)->with('message', 'Project updated!');
     }
