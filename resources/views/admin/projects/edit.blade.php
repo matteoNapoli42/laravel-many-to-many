@@ -10,12 +10,12 @@
 
         <div class="mb-3">
             <label for="title" class="form-label"><h3>TITLE</h3></label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="Inserisci il titolo del progetto" required>
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="Inserisci il titolo del progetto" value="{{$project->title}}" >
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label"><h3>DESCRIPTION</h3></label>
-            <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId" placeholder="Inserisci una descrizione del progetto" required>
+            <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId" placeholder="Inserisci una descrizione del progetto" value="{{$project->description}}" >
         </div>
 
         <div class="mb-3">
@@ -26,17 +26,17 @@
 
         <div class="mb-3">
             <label for="price" class="form-label"><h3>GITHUB</h3></label>
-            <input type="text" class="form-control" name="github" id="github" aria-describedby="helpId" placeholder="Inserisci il link di github" required>
+            <input type="text" class="form-control" name="github" id="github" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{$project->github}}" >
         </div>
 
         <div class="mb-3">
             <label for="project_link" class="form-label"><h3>PROJECT LINK</h3></label>
-            <input type="text" class="form-control" name="project_link" id="project_link" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{old('github')}}">
+            <input type="text" class="form-control" name="project_link" id="project_link" aria-describedby="helpId" placeholder="Inserisci il link di github" value="{{$project->project_link}}">
         </div>
 
         <div class="mb-3">
             <label for="type" class="form-label"><h3>TYPE</h3></label>
-            <input type="text" class="form-control" name="type" id="type" aria-describedby="helpId" placeholder="Inserisci il tipo di progetto" value="{{old('type')}}">
+            <input type="text" class="form-control" name="type" id="type" aria-describedby="helpId" placeholder="Inserisci il tipo di progetto" value="{{$project->type}}">
         </div>
 
         <div class="mb-3">
