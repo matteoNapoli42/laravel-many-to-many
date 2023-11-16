@@ -77,11 +77,6 @@ class ProjectsController extends Controller
     {
         $validated = $request->validated();
         if ($request->has('thumb')) {
-            $file_path = Storage::put('thumbs', $request->thumb);
-            $validated['thumb'] = $file_path;
-        }
-
-        if ($request->has('thumb')) {
             if (!is_Null($project->thumb) && Storage::fileExists(($project->thumb))) {
                 Storage::delete($project->thumb);
             }

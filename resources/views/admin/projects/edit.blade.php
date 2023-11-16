@@ -35,13 +35,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="type" class="form-label"><h3>TYPE</h3></label>
-            <input type="text" class="form-control" name="type" id="type" aria-describedby="helpId" placeholder="Inserisci il tipo di progetto" value="{{$project->type}}">
-        </div>
-
-        <div class="mb-3">
             <select class="form-select" aria-label="Default select example" name="type_id">
-                <option selected>Select a project type</option>
+                <option selected value ="">Select a project type</option>
                 @foreach($all_types as $type)
                 <option value="{{$type->id}}">{{$type->name}}</option>
                 @endforeach
@@ -50,8 +45,8 @@
         
         <div class="mb-3">
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                @foreach($all_tech as $tech)
-                <input type="checkbox" class="btn-check" id="{{$tech->name}}" autocomplete="off" name="tech[]" value="{{$tech->id}}">
+                @foreach($all_tech as $tech) 
+                <input type="checkbox" class="btn-check" id="{{$tech->name}}" autocomplete="off" name="tech[]" value="{{$tech->id}}" {{$project->technologies->contains($tech) ? 'checked' : ''}}>
                 <label class="btn btn-outline-primary" for="{{$tech->name}}">{{$tech->name}}</label>
                 @endforeach
               </div>
